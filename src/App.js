@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Students from "./components/students/students/students";
 import "./App.css";
+import Button from "./components/UI/button/button";
 
 function App() {
   const [students, setStudents] = useState([
@@ -34,6 +35,8 @@ function App() {
     },
   ]);
 
+  const [toggle, setToggle] = useState(false);
+
   const changeHandler = (e, id) => {
     const { name, value } = e.target;
     setStudents((prevstate) =>
@@ -47,12 +50,19 @@ function App() {
     setStudents((prevstate) => prevstate.filter((item) => item.id !== id));
   };
 
+  const togleHandler = () => {
+    setToggle((prevstate) => !prevstate);
+  };
   return (
     <div className="App">
+      <Button btnType="success" clicked={togleHandler}>
+        تغییر وضعیت نمایش
+      </Button>
       <Students
         studentList={students}
         changeHandler={changeHandler}
         deleted={deletStudent}
+        toggle={toggle}
       />
     </div>
   );
