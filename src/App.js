@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Students from "./components/students/students/students";
 import "./App.css";
 import Button from "./components/UI/button/button";
-
+import NewStudent from "./components/students/newStudent/newStudent";
 function App() {
   const [students, setStudents] = useState([
     {
@@ -79,6 +79,7 @@ function App() {
   };
   return (
     <div className="App">
+      <NewStudent />
       <input
         type="text"
         value={searchBarValue}
