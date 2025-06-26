@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Students from "./components/students/students/students";
 import "./App.css";
 import Button from "./components/UI/button/button";
@@ -37,6 +37,14 @@ function App() {
 
   const [toggle, setToggle] = useState(false);
 
+  const [searchBarValue, setSearchBarValue] = useState("");
+
+  const [arrayHolder, setArrayHolder] = useState();
+
+  useEffect(() => {
+    setArrayHolder(students);
+  }, []);
+
   const changeHandler = (e, id) => {
     const { name, value } = e.target;
     setStudents((prevstate) =>
@@ -53,8 +61,29 @@ function App() {
   const togleHandler = () => {
     setToggle((prevstate) => !prevstate);
   };
+
+  const searchFilterFunction = (e) => {
+    const value = e.target.value;
+    setSearchBarValue(value);
+
+    if (!value) {
+      setStudents(arrayHolder);
+      return;
+    }
+
+    const results = arrayHolder.filter((item) =>
+      item.name.toLowerCase().includes(value.toLowerCase())
+    );
+
+    setStudents(results);
+  };
   return (
     <div className="App">
+      <input
+        type="text"
+        value={searchBarValue}
+        onChange={searchFilterFunction}
+      />
       <Button btnType="success" clicked={togleHandler}>
         تغییر وضعیت نمایش
       </Button>
