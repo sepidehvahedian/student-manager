@@ -3,7 +3,6 @@ import Student from "./student/student";
 
 function Students(props) {
   const { changeHandler, deleted } = props;
- 
 
   if (props.toggle) {
     return (
@@ -38,5 +37,10 @@ function Students(props) {
     );
   });
 }
-
-export default Students;
+export default React.memo(Students);
+Students.propTypes = {
+  studentsList: PropTypes.array.isRequired,
+  nameChanged: PropTypes.func.isRequired,
+  deleted: PropTypes.func.isRequired,
+  toggle: PropTypes.bool.isRequired,
+};
