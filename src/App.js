@@ -41,6 +41,13 @@ function App() {
 
   const [arrayHolder, setArrayHolder] = useState();
 
+  const [newStudents, setNewStudents] = useState({
+    name: "",
+    classNumber: "",
+    phoneNumber: "",
+    email: "",
+  });
+
   useEffect(() => {
     setArrayHolder(students);
   }, []);
@@ -77,9 +84,30 @@ function App() {
 
     setStudents(results);
   };
+
+  const inputHandler = (e) => {
+    setNewStudents((prevState) => {
+      return {
+        ...prevState,
+        [e.target.name]: e.target.value,
+      };
+    });
+  };
+
+  const addStudentHandler = () => {
+    setStudents((prev) => [...prev, { id: prev.length, ...newStudents }]);
+    setNewStudents({ name: "", classNumber: "", phoneNumber: "", email: "" });
+  };
   return (
     <div className="App">
-      <NewStudent />
+      <NewStudent
+        name={newStudents.name}
+        classNumber={newStudents.classNumber}
+        phoneNumber={newStudents.phoneNumber}
+        email={newStudents.email}
+        inputHandler={inputHandler}
+        addStudentHandler={addStudentHandler}
+      />
       <input
         type="text"
         value={searchBarValue}
