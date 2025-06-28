@@ -1,5 +1,7 @@
 import React from "react";
 import "./button.css";
+import PropTypes from "prop-types";
+
 function Button(props) {
   return (
     <div>
@@ -16,12 +18,11 @@ function Button(props) {
 }
 
 export default React.memo(Button);
-Button.propTypes={
-    children:PropTypes.string.isRequired,
-    clicked:PropTypes.func.isRequired,
-    btnType:PropTypes.string
-}
-Button.defaultProps={
-    btnType:'success'
-}
-
+Button.propTypes = {
+  children: PropTypes.string.isRequired,
+  clicked: PropTypes.func.isRequired,
+  btnType: PropTypes.string,
+};
+Button.defaultProps = {
+  btnType: "success",
+};

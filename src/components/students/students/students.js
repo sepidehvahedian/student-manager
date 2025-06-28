@@ -1,5 +1,6 @@
 import React from "react";
 import Student from "./student/student";
+import PropTypes from 'prop-types';
 
 function Students(props) {
   const { changeHandler, deleted } = props;

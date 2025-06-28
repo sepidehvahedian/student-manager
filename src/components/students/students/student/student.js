@@ -1,6 +1,8 @@
 import React from "react";
 import "./students.css";
 import Button from "../../../UI/button/button";
+import PropTypes from 'prop-types';
+
 function Student(props) {
   return (
     <div className="students">
